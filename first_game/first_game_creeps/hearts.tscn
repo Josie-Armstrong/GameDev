@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4comlj3r34hu"]
+
+[ext_resource type="Texture2D" uid="uid://b1tri071c5cqw" path="res://art/heart.png" id="1_qbydv"]
+
+[node name="Hearts" type="HBoxContainer"]
+layout_direction = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_bottom = 56.0
+grow_horizontal = 0
+scale = Vector2(0.1, 0.099)
+alignment = 2
+
+[node name="Heart1" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_qbydv")
+stretch_mode = 2

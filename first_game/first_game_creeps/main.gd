@@ -2,6 +2,8 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
+# var hearts = 3
+var high_score = 0
 
 func _ready():
 	pass
@@ -12,6 +14,8 @@ func game_over():
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()
+	$Player.hide()
+	$Player.no_physics()
 
 func new_game():
 	score = 0
@@ -19,6 +23,7 @@ func new_game():
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+	$HUD.show_hearts()
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
 

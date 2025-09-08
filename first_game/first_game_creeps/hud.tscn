@@ -1,13 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://b273n4ww70bc2"]
+[gd_scene load_steps=10 format=3 uid="uid://b273n4ww70bc2"]
 
 [ext_resource type="FontFile" uid="uid://dqndoib4re4r2" path="res://fonts/Xolonium-Regular.ttf" id="1_37p78"]
 [ext_resource type="Script" uid="uid://t00g3xaitfb7" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="Script" uid="uid://c7qpv5mevmmbq" path="res://hearts.gd" id="3_1xsix"]
+[ext_resource type="Texture2D" uid="uid://loent4q3bhfw" path="res://1heart.png" id="3_a2258"]
+[ext_resource type="Texture2D" uid="uid://bus21hbegyhdh" path="res://2hearts.png" id="4_1xsix"]
+[ext_resource type="Texture2D" uid="uid://b3oqswl4bbk00" path="res://3hearts.png" id="5_rftc2"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
 action = &"start_game"
 
 [sub_resource type="Shortcut" id="Shortcut_8sq4i"]
 events = [SubResource("InputEventAction_64ctp")]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_64ctp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a2258")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1xsix")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rftc2")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_64ctp")
@@ -66,5 +97,26 @@ text = "Start"
 wait_time = 2.0
 one_shot = true
 
+[node name="Hearts" type="Node2D" parent="."]
+position = Vector2(420, 35)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("3_1xsix")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hearts"]
+sprite_frames = SubResource("SpriteFrames_64ctp")
+animation = &"2"
+
+[node name="HighScore" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 9.0
+offset_right = 161.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 24
+text = "High Score: 0"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="dead" from="Hearts" to="." method="_on_hearts_dead"]
