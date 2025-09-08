@@ -2,6 +2,7 @@
 
 ## Game Tutorial
 [Link to the game tutorial I followed] (https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html)
+
 On Godot Docs, tutorial called "Your First 2D Game"
 
 ## Assets Used
