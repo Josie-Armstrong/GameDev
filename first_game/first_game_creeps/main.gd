@@ -4,9 +4,14 @@ extends Node
 var score
 # var hearts = 3
 var high_score = 0
+var color_array = [Color(0.12156862745098039, 0.3568627450980392, 0.2980392156862745),
+Color(0.1843137254901961, 0.13333333333333333, 0.20784313725490197),
+Color(0.5372549019607843, 0.8235294117647058, 0.8627450980392157),
+Color(1, 0.8941176470588236, 0.9803921568627451),
+Color(0.48627450980392156, 0.5019607843137255, 0.6078431372549019)]
 
 func _ready():
-	pass
+	randomize()
 
 func game_over():
 	$ScoreTimer.stop()
@@ -30,6 +35,7 @@ func new_game():
 	$HUD.show_hearts()
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
+	set_rand_bg_color();
 
 
 func _on_mob_timer_timeout():
@@ -66,3 +72,10 @@ func _on_score_timer_timeout() -> void:
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
+	
+func set_rand_bg_color():
+	#var red = randf_range(0, 0.5)
+	#var green = randf()
+	#var blue = randf()
+	$ColorRect.color = color_array.pick_random()
+	print($ColorRect.color)
