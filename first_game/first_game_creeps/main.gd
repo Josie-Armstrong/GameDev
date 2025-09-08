@@ -16,6 +16,10 @@ func game_over():
 	$DeathSound.play()
 	$Player.hide()
 	$Player.no_physics()
+	
+	if score > high_score:
+		high_score = score
+		$HUD.update_high_score(score)
 
 func new_game():
 	score = 0
