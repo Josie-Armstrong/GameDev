@@ -104,7 +104,7 @@ script = ExtResource("3_1xsix")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hearts"]
 sprite_frames = SubResource("SpriteFrames_64ctp")
-animation = &"2"
+animation = &"1"
 
 [node name="HighScore" type="Label" parent="."]
 offset_left = 1.0
