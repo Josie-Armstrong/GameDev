@@ -1,14 +1,25 @@
 extends Node
 
+signal heal
+
 @export var mob_scene: PackedScene
 var score
 # var hearts = 3
 var high_score = 0
-var color_array = [Color(0.12156862745098039, 0.3568627450980392, 0.2980392156862745),
-Color(0.1843137254901961, 0.13333333333333333, 0.20784313725490197),
-Color(0.5372549019607843, 0.8235294117647058, 0.8627450980392157),
-Color(1, 0.8941176470588236, 0.9803921568627451),
-Color(0.48627450980392156, 0.5019607843137255, 0.6078431372549019)]
+var color_array = [Color.html("#4a2854"),
+Color.html("#342751"),
+Color.html("#262c4f"),
+Color.html("#26434f"),
+Color.html("#254c49"),
+Color.html("#244933"),
+Color.html("#324723"),
+Color.html("#472323")]
+#[Color(0.1216, 0.3569, 0.2980),
+#Color(0.1843, 0.1333, 0.2078),
+#Color(0.2608, 0.3353, 0.3078),
+#Color(0.2706, 0.2941, 0.4),
+#Color(0.2863, 0.3020, 0.4078),
+#Color(0.3490, 0.2470, 0.3843)]
 
 func _ready():
 	randomize()
@@ -36,6 +47,7 @@ func new_game():
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
 	set_rand_bg_color();
+	# $Powerups.modulate.a = 0.7
 
 
 func _on_mob_timer_timeout():
@@ -72,6 +84,7 @@ func _on_score_timer_timeout() -> void:
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
+	$HeartPowerupTimer.start()
 	
 func set_rand_bg_color():
 	#var red = randf_range(0, 0.5)
@@ -79,3 +92,17 @@ func set_rand_bg_color():
 	#var blue = randf()
 	$ColorRect.color = color_array.pick_random()
 	print($ColorRect.color)
+	# print($ColorRect.color)
+
+func _on_heart_powerup_timer_timeout():
+	# print($Powerups.heart_show)
+	if $Powerups.heart_show == true:
+		$Powerups.hide_heart()
+	else:
+		$Powerups.show_heart()
+
+
+func _on_player_area_entered(_area: Area2D):
+	if $Powerups.heart_show == true:
+		heal.emit()
+		$HeartPowerupTimer.start()

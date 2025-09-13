@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://7f6posu4r607"]
+[gd_scene load_steps=10 format=4 uid="uid://7f6posu4r607"]
 
 [ext_resource type="Script" uid="uid://cn62wqcbku4eq" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dwspxd62kyt73" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://7vh1aaffxhpr" path="res://mob.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b273n4ww70bc2" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://danbt42ql60pu" path="res://art/gameover.wav" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b0eoodjacsebo" path="res://powerups.tscn" id="6_272bh"]
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
@@ -60,9 +61,20 @@ stream = SubResource("AudioStreamOggVorbis_lquwl")
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_7mycd")
 
+[node name="Powerups" parent="." instance=ExtResource("6_272bh")]
+body_type = "heart"
+heart_show = true
+
+[node name="HeartPowerupTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="heal" from="." to="HUD" method="_on_heal"]
+[connection signal="heal" from="." to="Powerups" method="_on_main_heal"]
+[connection signal="area_entered" from="Player" to="." method="_on_player_area_entered"]
 [connection signal="hit" from="Player" to="HUD" method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="game_over" from="HUD" to="." method="game_over"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="HeartPowerupTimer" to="." method="_on_heart_powerup_timer_timeout"]

@@ -1,6 +1,7 @@
 extends Area2D
 
 signal hit
+# signal heal
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
@@ -40,9 +41,11 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 
 
-func _on_body_entered(_body) -> void:
+func _on_body_entered(_body):
 	# hide() # Player disappears after being hit.
+	# if _body.type == "enemy":
 	hit.emit()
+	# elif _body.type == "heart":
 	# Must be deferred as we can't change physics properties on a physics callback.
 	# $CollisionShape2D.set_deferred("disabled", true)
 	

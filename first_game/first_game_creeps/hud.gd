@@ -39,5 +39,8 @@ func show_hearts():
 func _on_hearts_dead():
 	game_over.emit()
 
-func _on_player_hit() -> void:
+func _on_player_hit():
 	$Hearts.heart_hit()
+
+func _on_heal():
+	$Hearts.heal()

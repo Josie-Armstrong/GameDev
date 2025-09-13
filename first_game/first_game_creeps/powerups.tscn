@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0eoodjacsebo"]
+
+[ext_resource type="Script" uid="uid://bmnkvti8y6tbs" path="res://powerups.gd" id="1_1acca"]
+[ext_resource type="Texture2D" uid="uid://loent4q3bhfw" path="res://1heart.png" id="1_p4laf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1acca"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p4laf")
+}],
+"loop": true,
+"name": &"heart",
+"speed": 5.0
+}]
+
+[node name="Powerups" type="Area2D"]
+script = ExtResource("1_1acca")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_1acca")
+animation = &"heart"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.15, 0.15)
+polygon = PackedVector2Array(0, -106.667, 13.3333, -120, 33.3333, -133.333, 66.6667, -146.667, 106.667, -140, 133.333, -126.667, 153.333, -106.667, 166.667, -73.3333, 166.667, -40, 153.333, -6.66667, 140, 13.3333, 93.3333, 60, 13.3333, 140, -6.66667, 146.667, -53.3333, 100, -146.667, 6.66667, -160, -20, -166.667, -33.3333, -166.667, -73.3333, -153.333, -106.667, -120, -140, -73.3333, -146.667, -33.3333, -133.333)
