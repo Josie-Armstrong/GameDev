@@ -62,14 +62,13 @@ stream = SubResource("AudioStreamOggVorbis_lquwl")
 stream = ExtResource("6_7mycd")
 
 [node name="Powerups" parent="." instance=ExtResource("6_272bh")]
-body_type = "heart"
-heart_show = true
 
 [node name="HeartPowerupTimer" type="Timer" parent="."]
 wait_time = 1.5
 
 [connection signal="heal" from="." to="HUD" method="_on_heal"]
 [connection signal="heal" from="." to="Powerups" method="_on_main_heal"]
+[connection signal="inc_max_hearts" from="." to="HUD" method="_on_main_inc_max_hearts"]
 [connection signal="area_entered" from="Player" to="." method="_on_player_area_entered"]
 [connection signal="hit" from="Player" to="HUD" method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

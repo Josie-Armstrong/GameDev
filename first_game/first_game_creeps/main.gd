@@ -1,9 +1,11 @@
 extends Node
 
 signal heal
+signal inc_max_hearts
 
 @export var mob_scene: PackedScene
 var score
+var score_delta
 # var hearts = 3
 var high_score = 0
 var color_array = [Color.html("#4a2854"),
@@ -39,15 +41,16 @@ func game_over():
 
 func new_game():
 	score = 0
+	score_delta = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
-	$HUD.show_hearts()
+	$HUD.reset_hearts()
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
 	set_rand_bg_color();
-	# $Powerups.modulate.a = 0.7
+	$Powerups.modulate.a = 0.5
 
 
 func _on_mob_timer_timeout():
@@ -78,7 +81,13 @@ func _on_mob_timer_timeout():
 
 func _on_score_timer_timeout() -> void:
 	score += 1
+	score_delta += 1
 	$HUD.update_score(score)
+	
+	# Checks for a max hearts increase
+	if score_delta >= 20:
+		score_delta = 0
+		inc_max_hearts.emit()
 
 
 func _on_start_timer_timeout() -> void:

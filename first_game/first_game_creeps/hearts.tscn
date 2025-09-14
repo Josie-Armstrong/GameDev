@@ -1,19 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4comlj3r34hu"]
+[gd_scene load_steps=8 format=3 uid="uid://c4comlj3r34hu"]
 
-[ext_resource type="Texture2D" uid="uid://b1tri071c5cqw" path="res://art/heart.png" id="1_qbydv"]
+[ext_resource type="Script" uid="uid://c7qpv5mevmmbq" path="res://hearts.gd" id="1_xbpan"]
+[ext_resource type="Texture2D" uid="uid://loent4q3bhfw" path="res://1heart.png" id="2_dpij6"]
+[ext_resource type="Texture2D" uid="uid://bus21hbegyhdh" path="res://2hearts.png" id="3_qnxxr"]
+[ext_resource type="Texture2D" uid="uid://b3oqswl4bbk00" path="res://3hearts.png" id="4_6d171"]
+[ext_resource type="Texture2D" uid="uid://bouvagfx71myc" path="res://art/empty_heart.png" id="5_5gfcf"]
+[ext_resource type="Texture2D" uid="uid://by7a4ohf8wjut" path="res://art/full_heart.png" id="6_f5w7c"]
 
-[node name="Hearts" type="HBoxContainer"]
-layout_direction = 2
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -192.0
-offset_bottom = 56.0
-grow_horizontal = 0
-scale = Vector2(0.1, 0.099)
-alignment = 2
+[sub_resource type="SpriteFrames" id="SpriteFrames_64ctp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dpij6")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qnxxr")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6d171")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5gfcf")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_f5w7c")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
 
-[node name="Heart1" type="TextureRect" parent="."]
-layout_mode = 2
-texture = ExtResource("1_qbydv")
-stretch_mode = 2
+[node name="Hearts" type="Node2D"]
+scale = Vector2(0.13, 0.13)
+script = ExtResource("1_xbpan")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_64ctp")
+animation = &"full"

@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0eoodjacsebo"]
 
 [ext_resource type="Script" uid="uid://bmnkvti8y6tbs" path="res://powerups.gd" id="1_1acca"]
-[ext_resource type="Texture2D" uid="uid://loent4q3bhfw" path="res://1heart.png" id="1_p4laf"]
+[ext_resource type="Texture2D" uid="uid://d2m5vpbl0eb6a" path="res://art/white_heart.png" id="2_1acca"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1acca"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_p4laf")
+"texture": ExtResource("2_1acca")
 }],
 "loop": true,
 "name": &"heart",

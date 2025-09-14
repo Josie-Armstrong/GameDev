@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var body_type = "enemy"
+# @export var body_type = "enemy"
 
 func _ready():
 	var mob_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
