@@ -31,3 +31,5 @@ On Godot Docs, tutorial called "Your First 2D Game"
 - Algorithm writing for loop 1 (heart heals/powerups): 30-45 min
 - Implementation for loop 1: 2 hrs
 - Color/hex code fix to make future color additions easier: 30 min
+- Algorithm writing for loop 2 (max heart increase with time): 30 min
+- Implementation for loop 2, including completely restructuring hearts: 2.5 hrs
