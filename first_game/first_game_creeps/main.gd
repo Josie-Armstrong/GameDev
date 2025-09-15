@@ -16,6 +16,7 @@ Color.html("#254c49"),
 Color.html("#244933"),
 Color.html("#324723"),
 Color.html("#472323")]
+@export var col_arr : PackedColorArray
 #[Color(0.1216, 0.3569, 0.2980),
 #Color(0.1843, 0.1333, 0.2078),
 #Color(0.2608, 0.3353, 0.3078),
