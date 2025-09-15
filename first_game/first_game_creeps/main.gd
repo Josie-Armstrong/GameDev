@@ -30,6 +30,7 @@ func _ready():
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$HeartPowerupTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()

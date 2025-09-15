@@ -18,3 +18,7 @@ func hide_heart():
 func _on_main_heal():
 	heart_show = false
 	hide()
+
+
+func _on_hud_game_over() -> void:
+	hide()

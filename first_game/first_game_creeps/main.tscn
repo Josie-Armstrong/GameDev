@@ -76,5 +76,6 @@ wait_time = 1.5
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="game_over" from="HUD" to="." method="game_over"]
+[connection signal="game_over" from="HUD" to="Powerups" method="_on_hud_game_over"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="timeout" from="HeartPowerupTimer" to="." method="_on_heart_powerup_timer_timeout"]
