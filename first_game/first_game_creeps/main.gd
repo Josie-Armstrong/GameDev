@@ -17,6 +17,7 @@ Color.html("#244933"),
 Color.html("#324723"),
 Color.html("#472323")]
 @export var col_arr : PackedColorArray
+var show_heart_powerup = false
 #[Color(0.1216, 0.3569, 0.2980),
 #Color(0.1843, 0.1333, 0.2078),
 #Color(0.2608, 0.3353, 0.3078),
@@ -36,6 +37,7 @@ func game_over():
 	$DeathSound.play()
 	$Player.hide()
 	$Player.no_physics()
+	show_heart_powerup = false
 	
 	if score > high_score:
 		high_score = score
@@ -53,6 +55,7 @@ func new_game():
 	$Music.play()
 	set_rand_bg_color();
 	$Powerups.modulate.a = 0.5
+	$HeartPowerupTimer.stop()
 
 
 func _on_mob_timer_timeout():
@@ -96,6 +99,7 @@ func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
 	$HeartPowerupTimer.start()
+	show_heart_powerup = true
 	
 func set_rand_bg_color():
 	#var red = randf_range(0, 0.5)
@@ -109,7 +113,7 @@ func _on_heart_powerup_timer_timeout():
 	# print($Powerups.heart_show)
 	if $Powerups.heart_show == true:
 		$Powerups.hide_heart()
-	else:
+	elif show_heart_powerup == true:
 		$Powerups.show_heart()
 
 
