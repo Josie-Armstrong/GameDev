@@ -1,13 +1,76 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwspxd62kyt73"]
+[gd_scene load_steps=17 format=3 uid="uid://dwspxd62kyt73"]
 
 [ext_resource type="Script" uid="uid://cmo63gvyh5nxi" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bfslg7vcdmjwr" path="res://art/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Run.png" id="2_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://blia38ag5nh4n" path="res://playerGrey_up1.png" id="2_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://b0234tv6ky3bb" path="res://playerGrey_up2.png" id="3_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cqsc6ry4vopqk" path="res://art/playerGrey_walk1.png" id="4_dw050"]
 [ext_resource type="Texture2D" uid="uid://c36qs6dc5hc23" path="res://art/playerGrey_walk2.png" id="5_b26j0"]
+[ext_resource type="AudioStream" uid="uid://b06cmqn7xarc8" path="res://sounds/hurt.wav" id="7_1jxqw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivps1"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urp6f"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_606se"]
+atlas = ExtResource("2_1jxqw")
+region = Rect2(560, 0, 80, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivps1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urp6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_606se")
+}],
+"loop": true,
+"name": &"mushroom",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_2hs0m")
@@ -31,20 +94,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7ghd"]
-radius = 27.0
-height = 68.0
-
 [node name="Player" type="Area2D"]
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+position = Vector2(1, -25)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sh265")
-animation = &"walk"
+animation = &"mushroom"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_n7ghd")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(15, 33, 10, 27, 9, 2, 27, 1, 27, -8, 20, -20, 6, -27, -8, -27, -21, -20, -29, -9, -28, 1, -11, 2, -10, 24, -8, 30, -10, 36, 0, 30)
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1jxqw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

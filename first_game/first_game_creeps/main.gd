@@ -46,6 +46,7 @@ func game_over():
 func new_game():
 	score = 0
 	score_delta = 0
+	#$Heal.stop()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
@@ -61,24 +62,38 @@ func new_game():
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
+	#mob.flip_h = true;
 
 	# Choose a random location on Path2D.
-	var mob_spawn_location = $MobPath/MobSpawnLocation
-	mob_spawn_location.progress_ratio = randf()
+	var mob_spawn_x = randi_range(0,1)
+	mob.start_x = mob_spawn_x
+	# print(mob.start_x);
+	if (mob_spawn_x == 1):
+		mob_spawn_x = 480
+	var mob_spawn_location = Vector2(mob_spawn_x, randi_range(20,700))
+	#var mob_spawn_location = $MobPath/MobSpawnLocation
+	#mob_spawn_location.progress_ratio = randf()
 
 	# Set the mob's position to the random location.
-	mob.position = mob_spawn_location.position
+	mob.position = mob_spawn_location #.position
 
 	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
+	#var direction = mob_spawn_location.rotation + PI / 2
+	var direction;
+	if mob_spawn_location[0] == 0:
+		direction = 0
+	else:
+		direction = PI
 
 	# Add some randomness to the direction.
-	direction += randf_range(-PI / 4, PI / 4)
-	mob.rotation = direction
+	#direction += randf_range(-PI / 4, PI / 4)
+	# mob.rotation = direction
 
 	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	var velocity = Vector2(randf_range(250.0, 350.0), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
+	
+	# mob.apply_scale(Vector2(-1,-1))
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
@@ -111,6 +126,7 @@ func set_rand_bg_color():
 
 func _on_heart_powerup_timer_timeout():
 	# print($Powerups.heart_show)
+	$Heal.stop()
 	if $Powerups.heart_show == true:
 		$Powerups.hide_heart()
 	elif show_heart_powerup == true:
@@ -120,4 +136,5 @@ func _on_heart_powerup_timer_timeout():
 func _on_player_area_entered(_area: Area2D):
 	if $Powerups.heart_show == true:
 		heal.emit()
+		$Heal.play()
 		$HeartPowerupTimer.start()

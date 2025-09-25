@@ -32,19 +32,20 @@ func _process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)	
 	
 	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.animation = "mushroom"
 		$AnimatedSprite2D.flip_v = false
 		# See the note below about the following boolean assignment.
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		$AnimatedSprite2D.flip_h = velocity.x > 0
 	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
+		$AnimatedSprite2D.animation = "mushroom"
+		#$AnimatedSprite2D.flip_v = velocity.y > 0
 
 
 func _on_body_entered(_body):
 	# hide() # Player disappears after being hit.
 	# if _body.type == "enemy":
 	hit.emit()
+	$Hurt.play()
 	# elif _body.type == "heart":
 	# Must be deferred as we can't change physics properties on a physics callback.
 	# $CollisionShape2D.set_deferred("disabled", true)
@@ -52,7 +53,7 @@ func _on_body_entered(_body):
 func start(pos):
 	position = pos
 	show()
-	$CollisionShape2D.disabled = false
+	$CollisionPolygon2D.disabled = false
 	
 func no_physics():
-	$CollisionShape2D.set_deferred("disabled", true)
+	$CollisionPolygon2D.set_deferred("disabled", true)
