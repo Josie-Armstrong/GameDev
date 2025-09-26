@@ -52,7 +52,7 @@ On Godot Docs, tutorial called "Your First 2D Game"
 - Brainstorming and aesthetics ideation: 30 min
 - Initial sketches and art (did not end up using): 1 hr
 - Adding new sprites & frames for character and monsters (including code modifications & debugging): 2 hrs
-- Adding tileset background: 45 min
-- Change music: 15 min
+- Adding tileset background (and troubleshooting weird background issues) : 1 hr
+- Find new music & change music: 30 min
 - Add heart gain and damage sound effects: 30 min
 - Learned about particle effects and camera shake options (did not end up using for this game): 30 min
