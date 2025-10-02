@@ -74,5 +74,5 @@ On Godot Docs, tutorial called "Your First 2D Game"
 ## Timeline
 - Brainstorming and level mechanics planning: 30 min
 - Tileset setup and debugging (including collision mechanic that I didn't end up using b/c larger game structure was incompatible): 2 hrs
-- Adding lighting effects (for player, hearts, and main): 30 min
+- Adding lighting effects (for player, hearts, and main): 30-45 min
 - Implementing level 2 mechanics into the larger game and debugging issues: 3 hrs
