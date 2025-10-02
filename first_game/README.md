@@ -35,7 +35,7 @@ On Godot Docs, tutorial called "Your First 2D Game"
 - Implementation for loop 2, including completely restructuring hearts: 2.5 hrs
 - Written analysis of a game: ~1-2 hrs
 
-  # Loop Implementation (Week 3 Assignment)
+# Adding Juice (Week 4 Assignment)
 
 ## Assets Used
 - Heart icon by Dwi ridwanto from the noun project
@@ -56,3 +56,23 @@ On Godot Docs, tutorial called "Your First 2D Game"
 - Find new music & change music: 30 min
 - Add heart gain and damage sound effects: 30 min
 - Learned about particle effects and camera shake options (did not end up using for this game): 30 min
+
+# Level Design & Tilemaps (Week 5 Assignment)
+
+## Assets Used
+- Heart icon by Dwi ridwanto from the noun project
+- Slime sprites from CraftPix.net
+- Mushroom sprite by MonoPixelArt on itch.io
+- Background tileset for level 1 from Sprout Lands by Cup Nooble on itch.io
+- Background tileset for level 2 from BeyonderBoy on itch.io
+- Font is Pixel Game by suhadidesign
+- Death sound provided by tutorial linked above
+- Hurt/damage sound by OwlStorm on freesound
+- Heal sound by lulyc on freesound
+- Background music from fesliyanstudios.com
+
+## Timeline
+- Brainstorming and level mechanics planning: 30 min
+- Tileset setup and debugging (including collision mechanic that I didn't end up using b/c larger game structure was incompatible): 2 hrs
+- Adding lighting effects (for player, hearts, and main): 30 min
+- Implementing level 2 mechanics into the larger game and debugging issues: 3 hrs
