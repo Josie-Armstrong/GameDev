@@ -50,6 +50,11 @@ curve = SubResource("Curve2D_ig7tw")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
+[node name="Darkness" type="CanvasModulate" parent="."]
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="Powerups" parent="." instance=ExtResource("6_272bh")]
+
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
@@ -59,8 +64,6 @@ volume_db = -4.952
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_7mycd")
 
-[node name="Powerups" parent="." instance=ExtResource("6_272bh")]
-
 [node name="HeartPowerupTimer" type="Timer" parent="."]
 wait_time = 1.5
 
@@ -68,9 +71,17 @@ wait_time = 1.5
 stream = ExtResource("8_5vw27")
 volume_db = -3.467
 
-[connection signal="heal" from="." to="HUD" method="_on_heal"]
 [connection signal="heal" from="." to="Powerups" method="_on_main_heal"]
+[connection signal="heal" from="." to="HUD" method="_on_heal"]
 [connection signal="inc_max_hearts" from="." to="HUD" method="_on_main_inc_max_hearts"]
+[connection signal="lvl_2_end" from="." to="TileLayer" method="end_lvl_2"]
+[connection signal="lvl_2_end" from="." to="Player" method="end_lvl_2"]
+[connection signal="lvl_2_end" from="." to="Powerups" method="end_lvl_2"]
+[connection signal="lvl_2_end" from="." to="HUD" method="end_lvl_2"]
+[connection signal="lvl_2_start" from="." to="TileLayer" method="start_lvl_2"]
+[connection signal="lvl_2_start" from="." to="Player" method="start_lvl_2"]
+[connection signal="lvl_2_start" from="." to="Powerups" method="start_lvl_2"]
+[connection signal="lvl_2_start" from="." to="HUD" method="start_lvl_2"]
 [connection signal="area_entered" from="Player" to="." method="_on_player_area_entered"]
 [connection signal="hit" from="Player" to="HUD" method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

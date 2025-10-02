@@ -3,6 +3,9 @@ extends Area2D
 @export var body_type = "heart"
 @export var heart_show = true
 
+func _ready():
+	$PointLight2D.hide()
+
 func show_heart():
 	var pos_x = randi_range(10,470)
 	var pos_y = randi_range(10,710)
@@ -22,3 +25,9 @@ func _on_main_heal():
 
 func _on_hud_game_over() -> void:
 	hide()
+
+func start_lvl_2():
+	$PointLight2D.show()
+
+func end_lvl_2():
+	$PointLight2D.hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwspxd62kyt73"]
+[gd_scene load_steps=19 format=3 uid="uid://dwspxd62kyt73"]
 
 [ext_resource type="Script" uid="uid://cmo63gvyh5nxi" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://bfslg7vcdmjwr" path="res://art/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Run.png" id="2_1jxqw"]
@@ -7,6 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://cqsc6ry4vopqk" path="res://art/playerGrey_walk1.png" id="4_dw050"]
 [ext_resource type="Texture2D" uid="uid://c36qs6dc5hc23" path="res://art/playerGrey_walk2.png" id="5_b26j0"]
 [ext_resource type="AudioStream" uid="uid://b06cmqn7xarc8" path="res://sounds/hurt.wav" id="7_1jxqw"]
+
+[sub_resource type="Gradient" id="Gradient_1jxqw"]
+offsets = PackedFloat32Array(0.00974026, 0.691558)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dw050"]
+gradient = SubResource("Gradient_1jxqw")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.486239, 0.502294)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
 atlas = ExtResource("2_1jxqw")
@@ -97,6 +108,12 @@ animations = [{
 [node name="Player" type="Area2D"]
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+show_behind_parent = true
+z_index = -1
+energy = 1.38
+texture = SubResource("GradientTexture2D_dw050")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -25)

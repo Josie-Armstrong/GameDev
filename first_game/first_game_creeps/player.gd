@@ -8,7 +8,7 @@ var screen_size # Size of the game window.
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	
+	$PointLight2D.hide()
 	hide()
 
 func _process(delta):
@@ -57,3 +57,9 @@ func start(pos):
 	
 func no_physics():
 	$CollisionPolygon2D.set_deferred("disabled", true)
+	
+func start_lvl_2():
+	$PointLight2D.show()
+
+func end_lvl_2():
+	$PointLight2D.hide()

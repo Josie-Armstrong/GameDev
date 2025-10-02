@@ -20,6 +20,10 @@ func show_message(text):
 	$MessageTimer.start()
 	
 func show_game_over():
+	var color_black = Color.html("#000000");
+	$ScoreLabel.set("theme_override_colors/font_color", color_black)
+	$HighScore.set("theme_override_colors/font_color", color_black)
+
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
@@ -131,4 +135,15 @@ func _on_main_inc_max_hearts():
 		new_heart_column = 0
 	else:
 		new_heart_column += 1
+
+func start_lvl_2():
+	var white = Color.html("#ffffff")
 	
+	$HighScore.set("theme_override_colors/font_color", white)
+	$ScoreLabel.set("theme_override_colors/font_color", white)
+
+func end_lvl_2():
+	var black = Color.html("#000000")
+	
+	$HighScore.set("theme_override_colors/font_color", black)
+	$ScoreLabel.set("theme_override_colors/font_color", black)

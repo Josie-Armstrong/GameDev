@@ -2,10 +2,16 @@ extends Node
 
 signal heal
 signal inc_max_hearts
+signal lvl_2_start
+signal lvl_2_end
 
 @export var mob_scene: PackedScene
 var score
 var score_delta
+var lvl2_time = 5 #Num seconds before player changes to lvl 2
+var lvl2_end = 20 #Num seconds before lvl 2 ends
+var lvl2_delta = 0 #Tracking score change
+var is_lvl_2 = false #keeps track of if we're on the 2nd lvl
 # var hearts = 3
 var high_score = 0
 var color_array = [Color.html("#4a2854"),
@@ -24,9 +30,11 @@ var show_heart_powerup = false
 #Color(0.2706, 0.2941, 0.4),
 #Color(0.2863, 0.3020, 0.4078),
 #Color(0.3490, 0.2470, 0.3843)]
+# var mob_array = []
 
 func _ready():
 	randomize()
+	$Darkness.hide()
 
 func game_over():
 	$ScoreTimer.stop()
@@ -37,6 +45,13 @@ func game_over():
 	$DeathSound.play()
 	$Player.hide()
 	$Player.no_physics()
+	
+	lvl_2_end.emit()
+	is_lvl_2 = false
+	lvl2_delta = 0
+	$Darkness.hide()
+	$Powerups.modulate.a = 0.5
+	
 	show_heart_powerup = false
 	
 	if score > high_score:
@@ -96,18 +111,42 @@ func _on_mob_timer_timeout():
 	# mob.apply_scale(Vector2(-1,-1))
 
 	# Spawn the mob by adding it to the Main scene.
+	
 	add_child(mob)
+	mob.check_lvl_2(is_lvl_2)
+
+func Level2Change():
+	if !is_lvl_2:
+		is_lvl_2 = true
+		$Darkness.show()
+		lvl_2_start.emit()
+		$Powerups.modulate.a = 0.9
+		
+	else:
+		is_lvl_2 = false
+		$Darkness.hide()
+		lvl_2_end.emit()
+		$Powerups.modulate.a = 0.5
 
 
 func _on_score_timer_timeout() -> void:
 	score += 1
 	score_delta += 1
+	lvl2_delta += 1
 	$HUD.update_score(score)
 	
 	# Checks for a max hearts increase
 	if score_delta >= 20:
 		score_delta = 0
 		inc_max_hearts.emit()
+	
+	if lvl2_delta >= lvl2_time and !is_lvl_2:
+		Level2Change()
+		lvl2_delta = 0
+	elif lvl2_delta >= lvl2_end and is_lvl_2:
+		lvl2_delta = 0
+		Level2Change()
+		
 
 
 func _on_start_timer_timeout() -> void:
