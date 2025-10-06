@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7f6posu4r607"]
+[gd_scene load_steps=12 format=3 uid="uid://7f6posu4r607"]
 
 [ext_resource type="Script" uid="uid://cn62wqcbku4eq" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dwspxd62kyt73" path="res://player.tscn" id="1_ig7tw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b0eoodjacsebo" path="res://powerups.tscn" id="6_272bh"]
 [ext_resource type="AudioStream" uid="uid://djbolmmvewapi" path="res://sounds/bg_music.mp3" id="6_kek77"]
 [ext_resource type="AudioStream" uid="uid://cltni81nde2su" path="res://sounds/heal.wav" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://7j07h0ry5iqc" path="res://ui.tscn" id="10_4c57u"]
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
@@ -71,6 +72,8 @@ wait_time = 1.5
 stream = ExtResource("8_5vw27")
 volume_db = -3.467
 
+[node name="UI" parent="." instance=ExtResource("10_4c57u")]
+
 [connection signal="heal" from="." to="Powerups" method="_on_main_heal"]
 [connection signal="heal" from="." to="HUD" method="_on_heal"]
 [connection signal="inc_max_hearts" from="." to="HUD" method="_on_main_inc_max_hearts"]
@@ -91,3 +94,8 @@ volume_db = -3.467
 [connection signal="game_over" from="HUD" to="Powerups" method="_on_hud_game_over"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="timeout" from="HeartPowerupTimer" to="." method="_on_heart_powerup_timer_timeout"]
+[connection signal="diff_chng" from="UI" to="." method="change_difficulty"]
+[connection signal="helvetica_theme" from="UI" to="." method="hud_helvetica_theme"]
+[connection signal="lvl1" from="UI" to="." method="Lvl1"]
+[connection signal="lvl2" from="UI" to="." method="Lvl2"]
+[connection signal="pixel_theme" from="UI" to="." method="hud_pixel_theme"]

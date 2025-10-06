@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b273n4ww70bc2"]
+[gd_scene load_steps=6 format=3 uid="uid://b273n4ww70bc2"]
 
 [ext_resource type="Script" uid="uid://t00g3xaitfb7" path="res://hud.gd" id="1_64ctp"]
-[ext_resource type="FontFile" uid="uid://duywhcxynun74" path="res://fonts/Pixel Game.otf" id="2_8sq4i"]
 [ext_resource type="PackedScene" uid="uid://c4comlj3r34hu" path="res://hearts.tscn" id="3_8sq4i"]
 [ext_resource type="Theme" uid="uid://ciq7v36h25hm0" path="res://creeps-theme.tres" id="3_640wx"]
 
@@ -43,7 +42,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_640wx")
 theme_type_variation = &"HeaderLarge"
-theme_override_fonts/font = ExtResource("2_8sq4i")
 theme_override_font_sizes/font_size = 99
 text = "Dodge the Creeps!"
 horizontal_alignment = 1
@@ -81,7 +79,6 @@ offset_right = 154.0
 offset_bottom = 72.0
 theme = ExtResource("3_640wx")
 theme_type_variation = &"HeaderLarge"
-theme_override_fonts/font = ExtResource("2_8sq4i")
 theme_override_font_sizes/font_size = 34
 text = "High Score: 0"
 horizontal_alignment = 1

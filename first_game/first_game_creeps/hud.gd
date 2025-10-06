@@ -20,9 +20,9 @@ func show_message(text):
 	$MessageTimer.start()
 	
 func show_game_over():
-	var color_black = Color.html("#000000");
-	$ScoreLabel.set("theme_override_colors/font_color", color_black)
-	$HighScore.set("theme_override_colors/font_color", color_black)
+	#var color_black = Color.html("#000000");
+	#$ScoreLabel.set("theme_override_colors/font_color", color_black)
+	#$HighScore.set("theme_override_colors/font_color", color_black)
 
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
@@ -64,7 +64,7 @@ func reset_hearts():
 	for i in max_hearts:
 		
 		if hearts_already_set == false: #creating new objects when game starts
-			print(i)
+			# print(i)
 			var temp_heart = heart_obj.instantiate()
 			add_child(temp_heart)
 			heart_array.append(temp_heart)
@@ -80,7 +80,7 @@ func reset_hearts():
 		
 	#$Hearts.reset_hearts()
 	
-	print(heart_array[0].position)
+	# print(heart_array[0].position)
 
 # func _on_hearts_dead():
 	#game_over.emit()
@@ -99,7 +99,7 @@ func _on_heal():
 		current_hearts += 1
 		heart_array[current_hearts - 1].set_heart(true)
 	else:
-		print("too many hearts")
+		# print("too many hearts")
 		return
 
 # When player reaches the next level of hearts
@@ -107,7 +107,7 @@ func _on_main_inc_max_hearts():
 	#Checking heart row
 	if max_hearts % 3 == 0:
 		new_heart_row += 1
-		print(new_heart_row)
+		# print(new_heart_row)
 	
 	max_hearts += 1
 	
@@ -141,9 +141,27 @@ func start_lvl_2():
 	
 	$HighScore.set("theme_override_colors/font_color", white)
 	$ScoreLabel.set("theme_override_colors/font_color", white)
+	$Message.set("theme_override_colors/font_color", white)
 
 func end_lvl_2():
 	var black = Color.html("#000000")
 	
 	$HighScore.set("theme_override_colors/font_color", black)
 	$ScoreLabel.set("theme_override_colors/font_color", black)
+	$Message.set("theme_override_colors/font_color", black)
+	
+func simple_theme(yes_simple):
+	if yes_simple:
+		var new_theme = load("res://simple-font-theme.tres")
+		
+		$ScoreLabel.theme = new_theme
+		$Message.theme = new_theme
+		$StartButton.theme = new_theme
+		$HighScore.theme = new_theme
+	else:
+		var new_theme = load("res://creeps-theme.tres")
+		
+		$ScoreLabel.theme = new_theme
+		$Message.theme = new_theme
+		$StartButton.theme = new_theme
+		$HighScore.theme = new_theme

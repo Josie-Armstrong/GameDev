@@ -32,6 +32,8 @@ var show_heart_powerup = false
 #Color(0.3490, 0.2470, 0.3843)]
 # var mob_array = []
 
+var mob_difficulty = 0.4
+
 func _ready():
 	randomize()
 	$Darkness.hide()
@@ -46,17 +48,20 @@ func game_over():
 	$Player.hide()
 	$Player.no_physics()
 	
-	lvl_2_end.emit()
-	is_lvl_2 = false
-	lvl2_delta = 0
-	$Darkness.hide()
-	$Powerups.modulate.a = 0.5
+	#lvl_2_end.emit()
+	#is_lvl_2 = false
+	#lvl2_delta = 0
+	#$Darkness.hide()
+	#$Powerups.modulate.a = 0.5
+	# $UI.lvl_1()
 	
 	show_heart_powerup = false
 	
 	if score > high_score:
 		high_score = score
 		$HUD.update_high_score(score)
+		
+	$UI.show_icon()
 
 func new_game():
 	score = 0
@@ -64,6 +69,7 @@ func new_game():
 	#$Heal.stop()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	$MobTimer.wait_time = mob_difficulty
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$HUD.reset_hearts()
@@ -72,6 +78,8 @@ func new_game():
 	set_rand_bg_color();
 	$Powerups.modulate.a = 0.5
 	$HeartPowerupTimer.stop()
+	
+	$UI.hide_icon()
 
 
 func _on_mob_timer_timeout():
@@ -115,24 +123,23 @@ func _on_mob_timer_timeout():
 	add_child(mob)
 	mob.check_lvl_2(is_lvl_2)
 
-func Level2Change():
-	if !is_lvl_2:
-		is_lvl_2 = true
-		$Darkness.show()
-		lvl_2_start.emit()
-		$Powerups.modulate.a = 0.9
-		
-	else:
-		is_lvl_2 = false
-		$Darkness.hide()
-		lvl_2_end.emit()
-		$Powerups.modulate.a = 0.5
+func Lvl2():
+	is_lvl_2 = true
+	$Darkness.show()
+	lvl_2_start.emit()
+	$Powerups.modulate.a = 0.9
+
+func Lvl1():
+	is_lvl_2 = false
+	$Darkness.hide()
+	lvl_2_end.emit()
+	$Powerups.modulate.a = 0.5
 
 
 func _on_score_timer_timeout() -> void:
 	score += 1
 	score_delta += 1
-	lvl2_delta += 1
+	#lvl2_delta += 1
 	$HUD.update_score(score)
 	
 	# Checks for a max hearts increase
@@ -140,12 +147,12 @@ func _on_score_timer_timeout() -> void:
 		score_delta = 0
 		inc_max_hearts.emit()
 	
-	if lvl2_delta >= lvl2_time and !is_lvl_2:
-		Level2Change()
-		lvl2_delta = 0
-	elif lvl2_delta >= lvl2_end and is_lvl_2:
-		lvl2_delta = 0
-		Level2Change()
+	#if lvl2_delta >= lvl2_time and !is_lvl_2:
+		#Level2Change()
+		#lvl2_delta = 0
+	#elif lvl2_delta >= lvl2_end and is_lvl_2:
+		#lvl2_delta = 0
+		#Level2Change()
 		
 
 
@@ -160,7 +167,7 @@ func set_rand_bg_color():
 	#var green = randf()
 	#var blue = randf()
 	$ColorRect.color = color_array.pick_random()
-	print($ColorRect.color)
+	# print($ColorRect.color)
 	# print($ColorRect.color)
 
 func _on_heart_powerup_timer_timeout():
@@ -177,3 +184,13 @@ func _on_player_area_entered(_area: Area2D):
 		heal.emit()
 		$Heal.play()
 		$HeartPowerupTimer.start()
+
+func hud_helvetica_theme():
+	$HUD.simple_theme(true)
+
+func hud_pixel_theme():
+	$HUD.simple_theme(false)
+	
+func change_difficulty(difficulty):
+	mob_difficulty = difficulty
+	# print(difficulty)

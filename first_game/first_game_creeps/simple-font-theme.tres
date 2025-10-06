@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://ciq7v36h25hm0"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dt53600fvgui6"]
 
-[ext_resource type="FontFile" uid="uid://duywhcxynun74" path="res://fonts/Pixel Game.otf" id="1_0wnfr"]
+[ext_resource type="FontFile" uid="uid://sw7m6adjquy3" path="res://fonts/Helvetica-Bold.ttf" id="1_r5r46"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wnfr"]
 content_margin_left = 4.0
@@ -45,7 +45,7 @@ corner_radius_bottom_right = 48
 corner_radius_bottom_left = 48
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3ol1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n40c"]
 bg_color = Color(0.60507, 0.81, 0.5427, 1)
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 20
@@ -82,7 +82,7 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
-Button/fonts/font = ExtResource("1_0wnfr")
+Button/fonts/font = ExtResource("1_r5r46")
 Button/styles/disabled = SubResource("StyleBoxFlat_0wnfr")
 Button/styles/hover = SubResource("StyleBoxFlat_061ue")
 Button/styles/normal = SubResource("StyleBoxFlat_thg8e")
@@ -90,13 +90,13 @@ Button/styles/pressed = SubResource("StyleBoxFlat_d6b14")
 FlatButton/colors/font_color = Color(0, 0, 0, 1)
 FlatButton/colors/font_focus_color = Color(0, 0, 0, 1)
 FlatButton/colors/font_hover_color = Color(0, 0, 0, 1)
-FlatButton/font_sizes/font_size = 58
-FlatButton/fonts/font = ExtResource("1_0wnfr")
-FlatButton/styles/hover = SubResource("StyleBoxFlat_s3ol1")
+FlatButton/font_sizes/font_size = 48
+FlatButton/fonts/font = ExtResource("1_r5r46")
+FlatButton/styles/hover = SubResource("StyleBoxFlat_7n40c")
 FlatButton/styles/normal = SubResource("StyleBoxFlat_lxtxd")
 HeaderLarge/colors/font_color = Color(0, 0, 0, 1)
-HeaderLarge/fonts/font = ExtResource("1_0wnfr")
+HeaderLarge/fonts/font = ExtResource("1_r5r46")
 Label/font_sizes/font_size = 58
-Label/fonts/font = ExtResource("1_0wnfr")
+Label/fonts/font = ExtResource("1_r5r46")
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 TextEdit/colors/font_color = Color(0, 0, 0, 1)
