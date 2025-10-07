@@ -100,4 +100,4 @@ On Godot Docs, tutorial called "Your First 2D Game"
 - Modifications to original UI design (in Godot, not reflected in Figma): ~30 min
 
 ## Screenshot of UI Wireframe/Design
-![Figma screenshot](UI-wireframe.png)
+![Figma screenshot](NEW-UI-wireframe.png)
