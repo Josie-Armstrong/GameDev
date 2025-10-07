@@ -98,3 +98,6 @@ On Godot Docs, tutorial called "Your First 2D Game"
 - Basic visual implementation (no functionality): ~1 hr
 - Coding & functionality implementation (and LOTS of debugging): ~4.5 hrs
 - Modifications to original UI design (in Godot, not reflected in Figma): ~30 min
+
+## Screenshot of UI Wireframe/Design
+![Figma screenshot](UI-wireframe.png)
