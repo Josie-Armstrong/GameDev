@@ -76,3 +76,25 @@ On Godot Docs, tutorial called "Your First 2D Game"
 - Tileset setup and debugging (including collision mechanic that I didn't end up using b/c larger game structure was incompatible): 2 hrs
 - Adding lighting effects (for player, hearts, and main): 30-45 min
 - Implementing level 2 mechanics into the larger game and debugging issues: 3 hrs
+
+# UI, Menus, and Accessibility (Week 6 Assignment)
+
+## Assets Used
+- Heart icon by Dwi ridwanto from the noun project
+- Settings icon by Adrien Coquet from the noun project
+- Slime sprites from CraftPix.net
+- Mushroom sprite by MonoPixelArt on itch.io
+- Background tileset for level 1 from Sprout Lands by Cup Nooble on itch.io
+- Background tileset for level 2 from BeyonderBoy on itch.io
+- Font is Pixel Game by suhadidesign
+- Accessible/simple font is Helvetica
+- Death sound provided by tutorial linked above
+- Hurt/damage sound by OwlStorm on freesound
+- Heal sound by lulyc on freesound
+- Background music from fesliyanstudios.com
+
+## Timeline
+- UI wireframe design: ~30 min
+- Basic visual implementation (no functionality): ~1 hr
+- Coding & functionality implementation (and LOTS of debugging): ~4.5 hrs
+- Modifications to original UI design (in Godot, not reflected in Figma): ~30 min
